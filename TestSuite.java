@@ -101,23 +101,27 @@ public class TestSuite extends Hooks {
 
             System.out.println(noOfItem);
 
-            if(noOfItem==2){
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".ProductCard__content__9U9b1.xsHidden")));
 
-                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".ProductCard__content__9U9b1.xsHidden")));
+        List<WebElement>basketProduct = driver.findElements(By.cssSelector(".ProductCard__content__9U9b1.xsHidden"));
 
-                 String actual1 = basketProduct.get(0).getText();
+        int noOfItem = basketProduct.size();
 
-                 String  actual2 = basketProduct.get(1).getText();
+            System.out.println(noOfItem);
 
-                 assertThat(actual1, containsString(expected1));
+            List< String > values = new ArrayList<>();
 
-                 assertThat(actual2,containsString(expected2));
-            }
-        fait();
+            for(WebElement product: basketProduct) {
+
+                values.add(product.getText());
+                
+                assertThat(values, containsInAnyOrder(expected1,expected2));
+
+
     }
 
 
-
+    }
 
     @Test
         public void addOneMoreBasket (){
