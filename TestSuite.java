@@ -216,25 +216,4 @@ public class TestSuite extends Hooks {
         }
 
 
-   /* public void filteringReviewStars() throws InterruptedException {
-        doSearch("nike backpack");
-
-        Thread.sleep(3000);
-        WebElement filterStars = driver.findElement(By.id("4 or more-radio"));
-        filterStars.click();
-        List<WebElement> stars4more = driver.findElements(By.cssSelector("a[data-test='component-product-card-title']"));
-        Random random = new Random();
-        Thread.sleep(6000);
-        int selectedInt = random.nextInt(stars4more.size() - 1);
-        WebElement selected = stars4more.get(selectedInt);
-        String expected = selected.getText();
-        Thread.sleep(3000);
-        addToTrolley();
-        Thread.sleep(3000);
-        gotoTrolley();
-        String actual = getProductNameInBasket();
-        assertThat(actual, is(expected));
-    }*/
-
-
     }
