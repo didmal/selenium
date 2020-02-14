@@ -113,6 +113,7 @@ public class TestSuite extends Hooks {
 
                  assertThat(actual2,containsString(expected2));
             }
+        fait();
     }
 
 
