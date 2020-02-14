@@ -67,14 +67,6 @@ public class TestSuite extends Hooks {
 
             System.out.println(noOfItem);
 
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".ProductCard__content__9U9b1.xsHidden")));
-
-        List<WebElement>basketProduct = driver.findElements(By.cssSelector(".ProductCard__content__9U9b1.xsHidden"));
-
-        int noOfItem = basketProduct.size();
-
-            System.out.println(noOfItem);
-
             List< String > values = new ArrayList<>();
 
             for(WebElement product: basketProduct) {
