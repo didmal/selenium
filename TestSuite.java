@@ -14,43 +14,9 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.fail;
 public class TestSuite extends Hooks {
 
-    @Test
-    public void basketTest(){
+    
 
-        WebDriverWait wait = new WebDriverWait(driver,10);
-
-        doSearch("watch");
-
-        List<WebElement> productItem = driver.findElements(By.cssSelector("a[data-test='component-product-card-title']"));
-
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("a[data-test='component-product-card-title']")));
-
-        if (productItem.size() == 0) {
-            fail("There is  not a such product related to your search");
-        }
-
-        Random rand = new Random();
-
-        int randInt = rand.nextInt(productItem.size()-1);
-
-        WebElement selectedProduct = productItem.get(randInt);
-
-        String expected = selectedProduct.getText();
-
-        wait.until(ExpectedConditions.elementToBeClickable(selectedProduct));
-
-        selectedProduct.click();
-
-
-        addToTrolley();
-
-        gotoTrolley();
-
-        String actual = getProductNameInBasket();
-
-        assertThat(actual, is(equalTo(expected)));
-    }
-
+      
     @Test
 
     public void addTwoDifferentItemToBasket(){
@@ -144,10 +110,18 @@ public class TestSuite extends Hooks {
             int ranInt = random.nextInt(tableLamps.size() - 1);
 
             WebElement selected = tableLamps.get(ranInt);
-
-            String expectedName = selected.getText();
-
+            
             selected.click();
+            
+            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li[itemprop = 'price']")));
+
+            String priceTag = driver.findElement(By.cssSelector("li[itemprop = 'price']")).getText();
+
+            String getridof£ = priceTag.trim().substring(1);
+
+            double priceI = Double.parseDouble(getridof£);
+
+            System.out.println(priceTag);
 
             addToTrolley();
 
@@ -159,9 +133,15 @@ public class TestSuite extends Hooks {
 
             gotoTrolley();
 
-            String actual = getProductNameInBasket();
+            String basketTotalPrice = driver.findElement(By.cssSelector("div[ class ='Summary__subTotalLabel__2GphY']")).getText();
 
-            assertThat(actual, is(equalToIgnoringCase(expectedName)));
+            String getrid£ =  basketTotalPrice.trim().substring(1);
+
+            double totalPrice = Double.parseDouble(getrid£);
+
+            System.out.println(basketTotalPrice);
+
+            assertThat(totalPrice, is(priceI*2));
 
             String amount = productQuantity();
 
