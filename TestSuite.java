@@ -73,13 +73,14 @@ public class TestSuite extends Hooks {
 
                 values.add(product.getText());
                 
+                if(values.size==2){
+                    
+                  break;  
+            
+                }
+            }
                 assertThat(values, containsInAnyOrder(expected1,expected2));
-
-
-    }
-
-
-    }
+}
 
     @Test
         public void addOneMoreBasket (){
